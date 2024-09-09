@@ -1,0 +1,19 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% load crispy_forms_tags %} <!--Importando los formatos crispy-->
+
+{% block title %}Iniciar sesión{% endblock title %} <!--Título de la página-->
+
+{% block content %} <!--Contenido de login-->
+    <div class="d-flex justify-content-center">
+        <div class="card p-4" style="width: 100%; max-width: 400px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">
+            <h2>Inicia sesión</h2>
+            <form method="post" class=""> <!--Formato para iniciar sesión-->
+                {% csrf_token %} <!--Medida de seguridad para prevenir ataques CSRF-->
+                {{ form|crispy }} <!--Formato crispy para login-->
+                <p><a href="{% url 'password_reset' %}">Olvidé mi contraseña</a></p>
+                <button class="btn btn-primary ml-2" type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %} <!--Cerrando contenido de login-->

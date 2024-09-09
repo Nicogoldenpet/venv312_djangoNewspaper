@@ -1,0 +1,18 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% load crispy_forms_tags %} <!--Importando los formatos crispy-->
+
+{% block title %}Sign Up{% endblock title %} <!--Título de la página-->
+
+{% block content %} <!--Contenido de signup-->
+    <div class="d-flex justify-content-center">
+        <div class="card p-4" style="width: 100%; max-width: 1200px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">
+            <h2>Crea tu cuenta</h2>
+            <form method="post"> <!--Formato para registrarse-->
+                {% csrf_token %} <!--Medida de seguridad para prevenir ataques CSRF-->
+                {{ form|crispy }} <!--Formato crispy para login-->
+                <button class="btn btn-success ml-2" type="submit">Registrarme</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}<!--Cerrando contenido de signup-->

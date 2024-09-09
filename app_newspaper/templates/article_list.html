@@ -1,0 +1,38 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% block title %}Articles{% endblock title %} <!--Título de la página-->
+
+{% block content %} <!--Contenido de articles-->
+    <body style="background-color: rgb(236, 236, 235);">
+        
+    
+    {% for article in article_list %} <!--Recorriendo todos los artículos-->
+    <div class="d-flex justify-content-center">
+        <div class="card border-dark text-white" style="width: 100%; max-width: 1200px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">
+            <div class="card-header bg-dark fs-5">
+                <span class="fw-bold d-flex justify-content-center">
+                    {{ article.title }} <!--Título-->
+                </span> 
+                <span class="d-flex justify-content-center">by {{ article.author }} | {{ article.date }}</span> <!--Autor y fecha-->
+            </div>
+            <div class="card-body text-center text-dark fs-4">
+                <p>{{ article.body }}</p> <!--Cuerpo-->
+                <a href="{% url 'article_edit' article.pk %}" class="text-success fw-bold"> Editar</a> | <a href="{% url 'article_delete' article.pk %}" class="text-danger fw-bold">Eliminar</a>
+            </div>
+            <div class="card-footer text-start bg-dark">
+                <h1 class="fs-3">Comentarios</h1>
+                {% for comment in article.comment_set.all %} <!--Recorriendo todos los comentarios de cada artículo-->
+                    <p>
+                        <span class="fw-bold">
+                            {{ comment.author }} &middot;
+                        </span>
+                        {{ comment }}
+                    </p>
+                {% endfor %} <!--Cerrando for-->
+            </div>
+        </div>
+    </div>
+    <br />
+    {% endfor %} <!--Cerrando for-->
+    </body>
+{% endblock content %} <!--Cerrando contenido de articles-->

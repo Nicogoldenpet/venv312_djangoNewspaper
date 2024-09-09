@@ -1,0 +1,16 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% load crispy_forms_tags %} <!--Importando los formatos crispy-->
+
+{% block content %} <!--Contenido de new-->
+    <div class="card border-dark px-3 py-3" style="width: 100%; max-width: 2000px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">
+        <h1 class="text-center">Nuevo artículo</h1>
+        <form action="" method="post"> <!--Formato para new-->
+            {% csrf_token %} <!--Medida de seguridad para prevenir ataques CSRF-->
+            {{ form|crispy }} <!--Formato crispy para new-->
+            <div class="text-center">
+                <button class="btn btn-success ml-2 fs-4" type="submit" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">Guardar</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %} <!--Cerrando contenido de new-->

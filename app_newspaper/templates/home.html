@@ -1,0 +1,24 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% block title %}Home{% endblock title %} <!--Título de la página-->
+
+<div class="container-fluid">
+    {% block content %} <!--Contenido de la página-->
+        {% if user.is_authenticated %} <!--Si el usuario esta logueado podrá ver los artículos-->
+            <div class="d-flex justify-content-center align-items-center" style="min-height: calc(80vh);">
+                <div class="text-center">
+                    <h1 class="fw-bold display-3 text-success" style="text-shadow: 1px 1px 2px rgb(141, 96, 66);">Bienvenido {{ user.username }}! Tienes {{ user.age }} años.</h1> <!--Mensaje de bienvenida-->
+                    <p class="display-6 mb-4">Para ver los artículos publicados haz click aquí.</p>
+                    <a href="{% url 'article_list' %}" class="btn btn-success btn-lg fs-3" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">Ver artículos</a>
+                </div>
+            </div> <!--Mensaje de bienvenida al usuario--> <!--Opción para cerrar sesión-->
+        {% else %} <!--Si el usuario NO esta logueado, NO podrá ver los artículos-->
+            <div class="d-flex justify-content-center align-items-center" style="min-height: calc(80vh);">
+                <div class="text-center">
+                    <h1 class="fw-bold display-3 text-danger" style="text-shadow: 1px 1px 2px rgb(14, 13, 13);">Cuenta requerida</h1>
+                    <p class="display-6">Para ver los artículos publicados por favor inicie sesión.</p>
+                </div>
+            </div>
+        {% endif %} <!--Cerrando el if-->
+    {% endblock content %} <!--Cerrando el contenido de la página-->
+</div>

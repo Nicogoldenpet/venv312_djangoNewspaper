@@ -1,0 +1,16 @@
+{% extends "base.html" %} <!--Importando el diseño base.html -->
+
+{% load crispy_forms_tags %} <!--Importando los formatos crispy-->
+
+{% block content %} <!--Contenido de edit-->
+    <div class="article-entry card border-dark px-3 py-3" style="width: 100%; max-width: 2000px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">
+        <h1 class="text-center">Editar</h1>
+        <form action="" method="post"> <!--Formato para editar un artículo-->
+            {% csrf_token %} <!--Medida de seguridad para prevenir ataques CSRF-->
+            {{ form|crispy }} <!--Formato crispy para edit-->
+            <div class="text-center">
+                <button class="btn btn-info ml-2 fs-4" type="submit" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;">Actualizar</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %} <!--Cerrando contenido de edit-->

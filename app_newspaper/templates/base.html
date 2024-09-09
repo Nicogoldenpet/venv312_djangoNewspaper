@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %} <!--Cargando los statics-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Newspaper App{% endblock title %}</title> <!--Título de la página-->
+        <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+        <link rel="icon" type="image/png" href="/static/img/paloma.png"> <!--Icono de la página-->
+    </head>
+    <body>
+        <header class="p-3 mb-3 border-bottom" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+            <div class="container-fluid">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a class="navbar-brand fw-bold fs-3" href="{% url 'home' %}">Newspaper
+                        <img class="img-fluid" src="{% static 'img/7063304.png' %}" style="width: 8%; margin-left: 10px;">
+                    </a>
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="margin-left: 160px; text-shadow: 1px 1px 2px rgb(141, 96, 66);">
+                        {% if user.is_authenticated %} <!--Si el usuario esta logueado, tendrá ciertas opciones en el navbar-->
+                            <li><a href="{% url 'article_new' %}" class="nav-link px-2 link-dark fs-5">+ Añadir un artículo +</a></li>
+                            </ul>
+                            <div class="dropdown text-end">
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle fs-5" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <ul class="dropdown-menu text-small dropdown-menu-dark" aria-labelledby="dropdownUser1">
+                                    <li><a class="dropdown-item" href="{% url 'password_change'%}">Cambiar contraseña</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout'%}">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        {% else %} <!--Si el usuario no esta logueado, tendrá ciertas opciones en el navbar-->
+                            </ul>
+                            <div class="text-end">
+                                <a href="{% url 'login' %}" class="btn btn-outline-primary me-2 fs-5">Iniciar sesión</a>
+                                <a href="{% url 'signup' %}" class="btn btn-outline-success fs-5">Registrarse</a>
+                            </div>
+                        {% endif %} <!--Cerrando el if-->
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid ps-4">
+            <main>
+                {% block content %} <!--Contenido de la página-->
+                {% endblock content %} <!--Cerrando contenido-->
+            </main>
+        </div>
+
+        <script src=" {% static '/js/bootstrap.bundle.js' %}"></script> <!--Bootstrap JS para que funcione el dropdown-->
+    </body>
+</html>

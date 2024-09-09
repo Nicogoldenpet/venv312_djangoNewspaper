@@ -1,0 +1,8 @@
+{% extends 'base.html' %} <!--Leyendo el estilo Bootstrap-->
+
+{% block title %}Log Out{% endblock title %} <!--Título de la página-->
+
+{% block content %} <!--Contenido de logout-->
+    <h2>Se ha cerrado su cuenta.</h2>
+    <p>Para ingresar nuevamente vaya a <a href="{% url 'login' %}">Log In</a></p>
+{% endblock content %} <!--Cerrando contenido de logout-->
