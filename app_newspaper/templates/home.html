@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %} <!--Título de la página-->
+
+<div class="container-fluid">
+    {% block content %}
+        {% if user.is_authenticated %}
+            Bienvenido {{ user.username }}! Usted tiene {{ user.age }} años. <!--Mensaje de bienvenida al usuario-->
+            <p><a href="{% url 'logout' %}">Log Out</a></p> <!--Opción para cerrar sesión-->
+        {% else %}
+            <p>No ha iniciado sesión</p>
+            <a href="{% url 'login' %}">Log In</a> <!--Opciones para crear o entrar a una cuenta-->
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    {% endblock content %}
+</div>
